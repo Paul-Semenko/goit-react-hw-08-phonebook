@@ -2,15 +2,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   font-size: 20px;
   font-weight: bold;
+  color: #3b3f8d;
 }
 .filter__input {
   margin-top: 10px;
-  padding-left: 10px;
-  width: 20%;
-  height: 30px;
+  padding: 20px;
+  width: 530px;
+  height: 60px;
+  border: none;
+  background: #f3f3f3;
+  border-radius: 61px;
   align-items: center;
 }
 .contacts__title {

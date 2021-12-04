@@ -1,13 +1,19 @@
 .contact__button {
-  height: 35px;
-  width: 75px;
-  border-radius: 5px;
-  color: #ffff;
-  background-color: #3cb371;
+  width: 150px;
+  height: 50px;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 1.08;
+  color: rgba(18, 23, 34, 0.7);
+  background-color: rgba(64, 140, 255, 0.3);
+  border: none;
+  border-radius: 62px;
 }
 .contact__button:hover,
 .contact__button:focus {
-  background-color: rgb(212, 35, 35);
+  color: #fff;
+  background-color: rgba(240, 66, 66, 0.623);
 }
 
 .contacts__list {
@@ -15,13 +21,14 @@
   margin-right: auto;
   margin-left: auto;
   padding: 0;
-  width: 25%;
-
+  width: 38%;
   list-style: none;
 }
 .contacts__item {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  font-weight: bold;
   font-size: 25px;
+  color: #3b3f8d;
 }

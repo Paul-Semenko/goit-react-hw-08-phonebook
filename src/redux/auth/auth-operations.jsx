@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk} from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
-axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
+axios.defaults.baseURL = `https://connections-api.herokuapp.com`;
 
 const token = {
     set(token) {
@@ -12,23 +13,25 @@ const token = {
     },
 };
 
-export const register = createAsyncThunk('auth/register', async credentials => {
+export const register = createAsyncThunk('auth/register', async (credentials, {rejectWithValue}) => {
     try {
         const { data } = await axios.post('/users/signup', credentials);
         token.set(data.token);
         return data;
-
     } catch (error) {
+        
+        return rejectWithValue(toast.error(`Something went wrong! Please, try one more time`));
         
     }
 });
 
-export const logIn = createAsyncThunk('auth/login', async credentials => {
+export const logIn = createAsyncThunk('auth/login', async( credentials, {rejectWithValue}) => {
     try {
         const { data } = await axios.post('/users/login', credentials);
         token.set(data.token);
         return data;
     } catch (error) {
+        return rejectWithValue(toast.error(`Wrong email address or password!`));         
         
     }
 });
@@ -38,6 +41,7 @@ export const logOut = createAsyncThunk('auth/logout', async () => {
         await axios.post('/user/logout');
         token.unset();
     } catch (error) {
+        
         
     }
 });
@@ -52,7 +56,7 @@ export const fetchCurrentUser = createAsyncThunk('auth/refresh', async (_, thunk
         const { data } = await axios.get('/users/current');
         return data;
     } catch (error){
-        
+        return thunkAPI.rejectWithValue();
     }
     
 },

@@ -23,7 +23,10 @@ import style from './style.module.css';
            <button
               type="button"
               id={el.id}
-              onClick={() => dispatch(deleteContacts(el.id))}
+              onClick={() => {
+                dispatch(deleteContacts(el.id));
+                dispatch(getContacts());
+              }}
                     className={style.contact__button}
             >
               Delete

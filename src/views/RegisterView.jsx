@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { register} from '../redux/auth/auth-operations';
+import { toast } from 'react-toastify';
+import { register } from '../redux/auth/auth-operations';
+import style from '../components/UserMenu/style.module.css';
+
 
 
 export default function RegisterView() {
@@ -24,39 +27,48 @@ export default function RegisterView() {
 
     const handleSubmit = e => {
         e.preventDefault();
+        if (name.trim() === '' || email.trim() === '' || password.trim() === '') {
+            toast.info('Please, fill in all the fields!')
+            return
+        }
         dispatch(register({ name, email, password }));
         setName('');
         setEmail('');
         setPassword('');
     };
+    
 
     return (
-        <div>
-            <h1>Registration</h1>
+        
+        <div className={style.registerWrap}>
+            <h1 className={style.registerTitle}>Register</h1>
+            <p className={style.registerText}>online phone-book</p>
+            
             <form onSubmit={handleSubmit}
-                autoComplete="off">
-                <label>Name
-                    <input
+                autoComplete="off"
+                className={style.registerForm}>
+                <label className={style.registerLabel}>Name                
+                    <input className={style.registerInput}
                         type="text"
                         name="name"
                         value={name}
                         onChange={handleChange} />
-                </label>
-                <label>Email
-                    <input
+               </label>
+                <label className={style.registerLabel}>Email
+                    <input className={style.registerInput}
                         type="email"
-                        name="name"
+                        name="email"
                         value={email}
                         onChange={handleChange} />
                 </label>
-                <label>Password
-                    <input
+                <label className={style.registerLabel}>Password
+                    <input className={style.registerInput}
                         type="password"
                         name="password"
                         value={password}
                         onChange={handleChange} />
                 </label>
-                <button type="submit">Register</button>
+                <button type="submit" className={style.registerButton}>Register</button>
             </form>
         </div>
     )

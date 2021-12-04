@@ -37,7 +37,7 @@ export default function ContactForm() {
         <>
             <form onSubmit={handleSubmit}
                 className={style.form}>
-                <h1>Phonebook</h1>
+                <h1 className={style.form__header}>Phone-book</h1>
                 <label className={style.form__title}>Name
                     <input
                         type="text"
